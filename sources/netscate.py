@@ -2,7 +2,8 @@ from colorama import Fore, Back, Style
 import hashlib
 import base64
 
-print(Fore.RED, "Please, set obfuscation mode:", sep='')
+print(Fore.RED, "Please, choose obfuscation mode:", sep='')
+print(Fore.GREEN, "(0) All methods", sep='')
 print(Fore.GREEN, "(1) HEX\t\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "c02ea82e02e1", sep='')
 print(Fore.GREEN, "(2) Binary\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "00110001 00111001 00110010 00101110 00110001 00110110 00111000 00101110 00110000 00101110 00110001", sep='')
 print(Fore.GREEN, "(3) SHA256\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "b1cf87ce729d9aaa50449b9820156fa31dd47bf32396e8c9ce0f73490ac97ac0", sep='')
@@ -10,8 +11,11 @@ print(Fore.GREEN, "(4) SHA512\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "
 print(Fore.GREEN, "(5) Base64\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "MTkyLjE2OC4wLjEK", sep='')
 print(Fore.GREEN, "(6) MD5\t\t| ", Fore.YELLOW, "192.168.0.1 -> ", Fore.CYAN, "daaf1d27fd83421a66e32ea8d7f37e68", sep='')
 
+
+
 mode = int(input())
-print(Fore.RED, "Type IP address that you want to obfuscate", sep='')
+print(Fore.RED, "Type IP address that you want to obfuscate", sep='', end='')
+print(Fore.RESET)
 IP = input()
 
 def hexify(IP):
@@ -44,19 +48,26 @@ def md5_(IP):
 
 def obfuscate(mode):
     if (mode == 1):
-        print(Fore.LIGHTGREEN_EX, hexify(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "HEXADECIMAL: ", hexify(IP), sep='')
     elif (mode == 2):
-        print(Fore.LIGHTGREEN_EX, binaryfy(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "BINARY", binaryfy(IP), sep='')
     elif (mode == 3):
-        print(Fore.LIGHTGREEN_EX, sha256_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "SHA256:", sha256_(IP), sep='')
     elif (mode == 4):
-        print(Fore.LIGHTGREEN_EX, sha512_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "SHA512: ", sha512_(IP), sep='')
     elif (mode == 5):
-        print(Fore.LIGHTGREEN_EX, base64_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "Base64: ", base64_(IP), sep='')
     elif (mode == 6):
-        print(Fore.LIGHTGREEN_EX, md5_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "MD5: ", md5_(IP), sep='')
     else:
-        print("Please, set the correct mode.")
+        print(Fore.LIGHTGREEN_EX, "="*128, sep='')
+        print(Fore.LIGHTGREEN_EX, "HEXADECIMAL:\t", hexify(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "BINARY:\t\t", binaryfy(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "SHA256:\t\t", sha256_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "SHA512:\t\t", sha512_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "Base64:\t\t", base64_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "MD5:\t\t", md5_(IP), sep='')
+        print(Fore.LIGHTGREEN_EX, "="*128, sep='')
 
 if __name__ == "__main__":
     obfuscate(mode)
